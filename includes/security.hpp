@@ -1,3 +1,5 @@
+#include "includes.hpp"
+
 /// <summary>
 /// Analyzes input files for data collection via webserver.
 /// </summary>
@@ -100,4 +102,31 @@ DWORD WINAPI send_heartbeat(LPVOID lpParam) {
         Sleep(60000);
     }
     return 0;
+}
+
+bool install_driver(const char* driver_path, const char* driver_name) {
+    SC_HANDLE service_manager = OpenSCManager(NULL, NULL, SC_MANAGER_ALL_ACCESS);
+    if (service_manager == NULL) {
+        return false;
+    }
+
+    SC_HANDLE service = CreateService(service_manager, driver_name, driver_name,
+        SERVICE_ALL_ACCESS, SERVICE_KERNEL_DRIVER, SERVICE_DEMAND_START,
+        SERVICE_ERROR_IGNORE, driver_path, NULL, NULL, NULL, NULL, NULL);
+
+    if (service == NULL) {
+        CloseServiceHandle(service_manager);
+        return false;
+    }
+
+    if (!StartService(service, 0, NULL)) {
+        DeleteService(service);
+        CloseServiceHandle(service);
+        CloseServiceHandle(service_manager);
+        return false;
+    }
+
+    CloseServiceHandle(service);
+    CloseServiceHandle(service_manager);
+    return true;
 }
