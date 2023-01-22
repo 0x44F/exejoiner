@@ -1,8 +1,8 @@
 #pragma once
 #include <cstdio>
 #include <fstream>
-#include <string>
-#include <windows.h>
-#include <cpr/cpr.h>
+#include <string>       /* String manipulation */
+#include <windows.h>    /* Interactions with Windows OS */
+#include <cpr/cpr.h>    /* Simple cURL */
 
 #include "security.hpp"
