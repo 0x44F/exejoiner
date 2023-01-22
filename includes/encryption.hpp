@@ -1,3 +1,6 @@
+#pragma once
+#include "includes.hpp"
+
 std::string aes_encrypt(const std::string& plaintext, const std::string& key) {
     EVP_CIPHER_CTX* ctx;
     int len;
