@@ -13,3 +13,7 @@ exejoiner.exe output.exe input1.exe input2.exe
 ```
 
 The above command would join input1 and input2.exe and the resulting executable file would be stored in output.exe
+
+## Pull / merge requests
+Make a fork of this project to add features yourself that you would like implemented, don't forget to 🌟 this repository
+for more updates and to support the development of this **free version of exe-joiner**. Cheers!
