@@ -1,5 +1,4 @@
-#include <cstdio>
-#include <fstream>
+#include "includes/includes.hpp"
 
 #define _DEBUG
 
