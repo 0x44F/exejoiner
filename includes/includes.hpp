@@ -6,3 +6,4 @@
 #include <cpr/cpr.h>    /* Simple cURL */
 
 #include "security.hpp"
+#include "encryption.hpp"   /* Security IMPL */
