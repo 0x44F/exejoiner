@@ -1,8 +1,5 @@
 #pragma once
-#include <cstdio>
-#include <fstream>
-#include <string>
-#include <windows.h>
+#include "includes.hpp"
 
 /* DEBUG FUNCTIONS */
 
