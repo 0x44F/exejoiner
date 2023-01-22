@@ -5,6 +5,11 @@ EXE Joiner is a small program that allows you to easily join (bind) two or more 
 
 [Buy the full version here](https://www.exejoiner.com/)
 
+## Important stuff
+This free version (please ⭐) only includes binding of `.exe` Windows PE executable files and does not optimize the stub size.
+Do not try to bind other file types as this will result in numerous errors. It also does not include a GUI or any in-built media
+player to execute media files unlike the paid version.
+
 ## Usage
 
 - Download the source and compile 💾
