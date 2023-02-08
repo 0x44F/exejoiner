@@ -7,7 +7,7 @@
 #endif
 
 int main(int argc, char* argv[]) {
-    printf("exe-joiner public ver1.21.0\r\n");
+    printf("exe-joiner public ver1.22.0\r\n");
   
     if (argc < 4) {
         printf("Usage: %s <output_file> <input_file1> <input_file2> ... <input_fileN>\n", argv[0]);
